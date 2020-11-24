@@ -1,0 +1,50 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Carro</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<!-- <p:messages closable="true" /> -->
+			<p:growl />
+
+			<p:panel header="Cadastro de Carro">
+
+				<p:panelGrid columns="2">
+					<h:outputText value="Modelo do Carro: *" />
+					<p:inputText value="#{carroController.carro.modeloCarro}"
+						required="true"
+						requiredMessage="O campo Modelo do Carro é obrigatório!">
+						<f:validateLength minimum="1" />
+					</p:inputText>
+					<h:outputText value="Ano do Carro: *" />
+					<p:inputText value="#{carroController.carro.anoCarro}"
+						required="true" requiredMessage="O campo Ano é obrigatório!">
+						<f:validateDoubleRange minimum="1" />
+					</p:inputText>
+					<h:outputText value="Marca do Carro: *" />
+					<p:inputText value="#{carroController.carro.marcaCarro}"
+						required="true" requiredMessage="O campo Marca é obrigatório!">
+						<f:validateLength minimum="1" />
+					</p:inputText>
+					<h:outputText value="Descrição: *" />
+					<p:inputText value="#{carroController.carro.descricaoCarro}"
+						required="true" requiredMessage="O campo Descrição é obrigatório!">
+						<f:validateLength minimum="1" />
+					</p:inputText>
+					<f:facet name="footer">
+						<p:commandButton value="Salvar" action="#{carroController.salvar}"
+							ajax="false" />
+						<p:commandButton value="Limpar" action="cadastroCarro.xhtml"
+							actionListener="#{carroController.limparCampos}" immediate="true"
+							ajax="false" />
+					</f:facet>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

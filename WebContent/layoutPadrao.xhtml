@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="titulo">Tela inicial</ui:insert></title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:menubar>
+			<p:submenu label="Cadastros" icon="pi pi-file">
+				<p:menuitem value="Clientes" outcome="cadastroCliente" />
+				<p:menuitem value="Carros" outcome="cadastroCarro" />
+				<p:menuitem value="Estados" outcome="cadastroEstado" />
+				<p:menuitem value="Cidades" outcome="cadastroCidade" />
+				<p:menuitem value="Forma de Pagamentos"
+					outcome="cadastroFormaPagamento" />
+				<p:menuitem value="Orçamentos" outcome="cadastroOrcamento" />
+			</p:submenu>
+			<p:submenu label="Listas">
+				<p:menuitem value="Clientes" outcome="listaCliente" />
+				<p:menuitem value="Carros" outcome="listaCarro" />
+				<p:menuitem value="Estados" outcome="listaEstado" />
+				<p:menuitem value="Cidades" outcome="listaCidade" />
+				<p:menuitem value="Forma de Pagamentos"
+					outcome="listaFormaPagamento" />
+				<p:menuitem value="Orçamentos" outcome="listaOrcamento" />
+			</p:submenu>
+			<p:menuitem value="Pagina Inicial" url="home.xhtml"  icon="pi pi-times" />
+		</p:menubar>
+	</h:form> 
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+	<footer style="text-align: center;"> Developed by S.Lucas </footer>
+</h:body>
+</html>

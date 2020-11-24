@@ -1,0 +1,47 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Carros</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<p:growl />
+
+			<p:panel header="Lista de Carros">
+				<p:dataTable border="1" value="#{carroController.lista}" var="carro"
+					emptyMessage="Nenhum carro cadastrado!">
+					<p:column headerText="Id">
+						<h:outputText value="#{carro.id}" />
+					</p:column>
+					<p:column headerText="Modelo do Carro">
+						<h:outputText value="#{carro.modeloCarro}" />
+					</p:column>
+					<p:column headerText="Ano do Carro">
+						<h:outputText value="#{carro.anoCarro}" />
+					</p:column>
+					<p:column headerText="Marca do Carro">
+						<h:outputText value="#{carro.marcaCarro}" />
+					</p:column>
+					<p:column headerText="Descrição do Veiculo">
+						<h:outputText value="#{carro.descricaoCarro}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<p:commandButton value="Excluir"
+							action="#{carroController.excluir}" ajax="false">
+							<f:setPropertyActionListener value="#{carro}"
+								target="#{carroController.carro}" />
+						</p:commandButton>
+						<p:commandButton value="Editar" action="#{carroController.editar}"
+							ajax="false">
+							<f:setPropertyActionListener value="#{carro}"
+								target="#{carroController.carro}"  />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

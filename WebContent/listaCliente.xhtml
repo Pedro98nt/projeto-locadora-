@@ -1,0 +1,68 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Clientes</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<p:growl />
+
+			<p:panel header="Lista de Clientes">
+				<p:dataTable border="1" value="#{clienteController.lista}"
+					var="cliente" emptyMessage="Nenhum cliente cadastrado!">
+					<p:column headerText="Id">
+						<h:outputText value="#{cliente.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{cliente.nomeCliente}" />
+					</p:column>
+					<p:column headerText="Sobrenome">
+						<h:outputText value="#{cliente.sobrenome}" />
+					</p:column>
+					<p:column headerText="E-mail">
+						<h:outputText value="#{cliente.email}" />
+					</p:column>
+					<p:column headerText="Telefone">
+						<h:outputText value="#{cliente.telefone}" />
+					</p:column>
+					<p:column headerText="CNH">
+						<h:outputText value="#{cliente.cnh}" />
+					</p:column>
+					<p:column headerText="CPF">
+						<h:outputText value="#{cliente.cpf}" />
+					</p:column>
+					<p:column headerText="Endereço">
+						<h:outputText value="#{cliente.endereco}" />
+					</p:column>
+					<p:column headerText="Numero">
+						<h:outputText value="#{cliente.numero}" />
+					</p:column>
+					<p:column headerText="Cidade">
+						<h:outputText value="#{cliente.cidadeCliente}" />
+					</p:column>
+					<p:column headerText="Bairro">
+						<h:outputText value="#{cliente.bairroCliente}" />
+					</p:column>
+					<p:column headerText="Complemento">
+						<h:outputText value="#{cliente.complemento}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<p:commandButton value="Excluir"
+							action="#{clienteController.excluir}" ajax="false">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{clienteController.cliente}" />
+						</p:commandButton>
+						<p:commandButton value="Editar"
+							action="#{clienteController.editar}" ajax="false">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{clienteController.cliente}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

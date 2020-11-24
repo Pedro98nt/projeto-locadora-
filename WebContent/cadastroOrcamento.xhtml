@@ -1,0 +1,95 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Orçamento</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<p:growl />
+			<p:panel header="Cadastro de Orçamento">
+				<p:panelGrid columns="2">
+					<h:outputText value="Data da Locação: *" />
+					<p:calendar pattern="dd/MM/yyyy" mindate="23/06/2020"
+						value="#{orcamentoController.orcamento.dtLocacao}" required="true"
+						requiredMessage="O campo Data da Locação é obrigatório!">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
+					</p:calendar>
+					<h:outputText value="Data da Devolução: *" />
+					<p:calendar pattern="dd/MM/yyyy" mindate="23/06/2020"
+						value="#{orcamentoController.orcamento.dtDevolucao}"
+						required="true"
+						requiredMessage="O campo Data da Devolução é obrigatório!">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
+					</p:calendar>
+					<h:outputText value="Cliente: *" />
+					<p:selectOneMenu value="#{orcamentoController.clienteSelecionado}"
+						converter="clienteConverter" required="true"
+						requiredMessage="O campo Cliente é obrigatório!" filter="true">
+						<f:selectItem itemLabel="SELECIONE" />
+						<f:selectItems value="#{clienteController.lista}" var="cliente"
+							itemLabel="#{cliente.nomeCliente}" itemValue="#{cliente}" />
+					</p:selectOneMenu>
+					<h:outputText value="Estado: *" />
+					<p:selectOneMenu value="#{orcamentoController.estadoSelecionado}"
+						converter="estadoConverter" required="true"
+						requiredMessage="O campo Estado é obrigatório!" filter="true">
+						<f:selectItem itemLabel="SELECIONE" />
+						<f:selectItems value="#{estadoController.lista}" var="estado"
+							itemLabel="#{estado.ufEstado}" itemValue="#{estado}" />
+					</p:selectOneMenu>
+					<h:outputText value="Cidade: *" />
+					<p:selectOneMenu value="#{orcamentoController.cidadeSelecionado}"
+						converter="cidadeConverter" required="true"
+						requiredMessage="O campo Cidade é obrigatório!" filter="true">
+						<f:selectItem itemLabel="SELECIONE" />
+						<f:selectItems value="#{cidadeController.lista}" var="cidade"
+							itemLabel="#{cidade.nomeCidade}" itemValue="#{cidade}" />
+					</p:selectOneMenu>
+					<h:outputText value="Carro: *" />
+					<p:selectOneMenu value="#{orcamentoController.carroSelecionado}"
+						converter="carroConverter" required="true"
+						requiredMessage="O campo Carro é obrigatório!" filter="true">
+						<f:selectItem itemLabel="SELECIONE" />
+						<f:selectItems value="#{carroController.lista}" var="carro"
+							itemLabel="#{carro.modeloCarro}" itemValue="#{carro}" />
+					</p:selectOneMenu>
+					<h:outputText value="Dias: *" />
+					<p:inputText value="#{orcamentoController.orcamento.diaria}"
+						required="true" requiredMessage="O campo Dias é obrigatório!">
+						<f:validateDoubleRange minimum="1" />
+					</p:inputText>
+					<h:outputText value="Valor: *" />
+					<p:inputText value="#{orcamentoController.orcamento.valor}"
+						required="true" requiredMessage="O campo valor é obrigatório!">
+						<f:validateDoubleRange minimum="1" />
+					</p:inputText>
+					<h:outputText value="Forma de Pagamento: *" />
+					<p:selectOneMenu
+						value="#{orcamentoController.formaPagamentoSelecionado}"
+						converter="formaPagamentoConverter" required="true"
+						requiredMessage="O campo Forma de Pagamento é obrigatório!"
+						filter="true">
+						<f:selectItem itemLabel="SELECIONE" />
+						<f:selectItems value="#{formaDePagamentoController.lista}"
+							var="formaPagamento" itemLabel="#{formaPagamento.formaPagamento}"
+							itemValue="#{formaPagamento}" />
+					</p:selectOneMenu>
+					<f:facet name="footer">
+						<p:commandButton value="Salvar"
+							action="#{orcamentoController.salvar}" ajax="false" />
+						<p:commandButton value="Limpar" action="cadastroOrcamento.xhtml"
+							actionListener="#{orcamentoController.limparCampos}"
+							immediate="true" ajax="false" />
+					</f:facet>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
